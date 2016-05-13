@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
-    respod_to do |format|
+    respond_to do |format|
       format.html
-      format.json {render json: @posts}
+      format.json { render json: @posts }
     end
   end
 
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     respond_to do |format|
       format.html
-      format.json {render json: @post}
+      format.json { render json: @post }
     end
   end
 
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
       if params[:pictures]
-        params[:pictures].each { |image|
+          params[:pictures].each { |image|
           @post.pictures.create(image: image)
         }
       end
@@ -36,6 +36,7 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   private
